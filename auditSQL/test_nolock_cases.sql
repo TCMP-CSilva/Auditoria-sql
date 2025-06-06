@@ -56,4 +56,7 @@ JOIN @Temp2 t2 ON t1.id = t2.id;
 -- ✅ Caso 16: Alias en tabla y hint correcto
 SELECT * FROM dbo.Facturas f with(nolock);
 
+-- ✅ Caso adicional: With (NoLock) mezcla de mayúsculas y minúsculas
+SELECT * FROM dbo.Empleados With (NoLock);
+
 -- Fin del archivo
