@@ -1,26 +1,28 @@
-name: Auditoría NOLOCK
+name: Auditoría NOLOCK con SQLFluff
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
-  audit:
+  auditoria-nolock:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Clonar repositorio
+      - name: Clonar el repositorio
         uses: actions/checkout@v3
 
-      - name: Instalar Python
+      - name: Configurar Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
+          python-version: '3.11'
 
       - name: Instalar dependencias
-        run: pip install -r requirements.txt
-
-      - name: Ejecutar auditoría
         run: |
-          for file in *.sql; do
-            echo "🔍 Auditando $file"
-            python audit_nolock.py "$file"
-          done
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Ejecutar script de auditoría personalizada
+        run: python audit_nolock.py
