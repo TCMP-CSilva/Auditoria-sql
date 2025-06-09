@@ -1,1 +1,1 @@
-SELECT * FROM TABLE
+SELECT * FROM table with(nolock)
