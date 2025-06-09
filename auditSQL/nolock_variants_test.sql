@@ -25,17 +25,17 @@ SELECT * FROM dbo.Empleados WITH (NOLOCK, READUNCOMMITTED);
 SELECT * FROM dbo.Empleados with(nolock, readuncommitted);
 
 -- ❌ Caso 9: Falta hint
-SELECT * FROM dbo.Clientes;
+SELECT * FROM dbo.Clientes WITH (NOLOCK);
 
 -- ❌ Caso 10: JOIN sin NOLOCK en ninguna tabla
 SELECT a.Id, b.Total
-FROM dbo.Ordenes a
-JOIN dbo.DetalleVentas b ON a.Id = b.VentaID;
+FROM dbo.Ordenes a WITH (NOLOCK)
+JOIN dbo.DetalleVentas b WITH (NOLOCK); ON a.Id = b.VentaID;
 
 -- ❌ Caso 11: JOIN con NOLOCK en solo una tabla
 SELECT a.Id, b.Cantidad
 FROM dbo.Ventas a WITH (NOLOCK)
-JOIN dbo.DetalleVentas b ON a.Id = b.VentaID;
+JOIN dbo.DetalleVentas b WITH (NOLOCK) ON a.Id = b.VentaID;
 
 -- ✅ Caso 12: JOIN con NOLOCK en ambas tablas
 SELECT a.Id, b.Cantidad
