@@ -59,4 +59,6 @@ SELECT * FROM dbo.Facturas f with(nolock);
 -- ✅ Caso adicional: With (NoLock) mezcla de mayúsculas y minúsculas
 SELECT * FROM dbo.Empleados With (NoLock);
 
--- Fin del archivo
+
+
+-- Fin del archivo - ultimo cambio
