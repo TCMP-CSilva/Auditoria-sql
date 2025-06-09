@@ -25,7 +25,7 @@ SELECT * FROM dbo.Empleados WITH (NOLOCK, READUNCOMMITTED);
 SELECT * FROM dbo.Empleados with(nolock, readuncommitted);
 
 -- ❌ Caso 9: Falta hint
-SELECT * FROM dbo.Clientes;
+SELECT * FROM dbo.Clientes WITH(NOLOCK);;
 
 -- ❌ Caso 10: JOIN sin NOLOCK en ninguna tabla
 SELECT a.Id, b.Total
