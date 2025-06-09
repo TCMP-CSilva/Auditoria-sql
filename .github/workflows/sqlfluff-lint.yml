@@ -28,6 +28,21 @@ jobs:
       - name: 🧰 Instalar dependencias
         run: |
           pip install -r requirements.txt || echo "sin requirements.txt"
-      
-      - name: 🔍 Ejecutar script de auditoría NOLOCK
-        run: python audit_nolock.py
+
+      - name: 🔍 Ejecutar auditoría NOLOCK en todos los .sql
+        run: |
+          echo "Buscando archivos .sql en auditSQL/..."
+          shopt -s globstar
+          errored=0
+          for file in auditSQL/**/*.sql; do
+            if [[ -f "$file" ]]; then
+              echo "📄 Analizando: $file"
+              python audit_nolock.py "$file" || errored=1
+            fi
+          done
+          if [[ $errored -eq 1 ]]; then
+            echo "❌ Se encontraron errores en uno o más archivos SQL"
+            exit 1
+          else
+            echo "✅ Auditoría completada correctamente para todos los archivos SQL"
+          fi
