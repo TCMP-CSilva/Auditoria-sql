@@ -39,12 +39,12 @@ FROM dbo.Clientes WITH(NOLOCK);;
 -- ❌ Caso 10: JOIN sin NOLOCK en ninguna tabla
 SELECT a.Id, b.Total
 FROM dbo.Ordenes a
-    JOIN dbo.DetalleVentas b ON a.Id = b.VentaID;
+    JOIN dbo.DetalleVentas b With (NoLock) ON a.Id = b.VentaID;
 
 -- ❌ Caso 11: JOIN con NOLOCK en solo una tabla
 SELECT a.Id, b.Cantidad
 FROM dbo.Ventas a WITH (NOLOCK)
-    JOIN dbo.DetalleVentas b ON a.Id = b.VentaID;
+    JOIN dbo.DetalleVentas b With (NoLock) ON a.Id = b.VentaID;
 
 -- ✅ Caso 12: JOIN con NOLOCK en ambas tablas
 SELECT a.Id, b.Cantidad
