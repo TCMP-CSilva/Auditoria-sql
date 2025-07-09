@@ -34,7 +34,7 @@ FROM dbo.Empleados with(nolock, readuncommitted);
 
 -- ❌ Caso 9: Falta hint
 SELECT *
-FROM dbo.Clientes WITH(NOLOCK);;
+FROM dbo.Clientes;
 
 -- ❌ Caso 10: JOIN sin NOLOCK en ninguna tabla
 SELECT a.Id, b.Total
